@@ -13,6 +13,7 @@ class SVM_SGD:
         self.b = None
 
     def hinge_loss(self, x, y):
+        ## 1/2 * ||w||^2 + C * max(0, 1 - y * (wx + b))
         error = np.maximum(0, 1-(y*(np.dot(self.w, x)+self.b)))
         loss = (0.5 * np.linalg.norm(self.w)) + (self.C * np.sum(error))
         return loss
@@ -37,14 +38,10 @@ class SVM_SGD:
 
                 loss = self.hinge_loss(x_i, y[i])
             if (iter % 100) == 0:
-                print("Epoch: ", iter, "\nLoss: ", loss)
+                print("Epoch: ", iter, "\nLoss: ", loss) #print the loss after every 100 iters
 
     def predict(self, X):
         return np.sign(np.dot(self.w, X.T) + self.b)
-    
-    def accuracy(self, X, y):
-        y_pred = self.predict(X)
-        return np.mean(y_pred == y)
     
     def visulalization(self, x_train, y_train, x_test, pred):
         x_train_pos = x_train[y_train==1]
@@ -57,38 +54,41 @@ class SVM_SGD:
         self.ax = self.fig.add_subplot(1,1,1)
         
         #plot positive training data
-        self.ax.scatter(x_train_pos[:,0]+3, x_train_pos[:,1]+7, label='Positive Data', s=100)
+        self.ax.scatter(x_train_pos[:,0]+3, x_train_pos[:,1]+6, label='Positive Data', s=100)
         #plot negative training data
-        self.ax.scatter(x_train_neg[:,0]+1, x_train_neg[:,1]-9, label='Negative Data', s=100)
+        self.ax.scatter(x_train_neg[:,0]+1, x_train_neg[:,1]-6, label='Negative Data', s=100)
 
         # #plot positive predicted data
-        self.ax.scatter(x_test_pos[:,0]+3, x_test_pos[:,1]+4, label='Positive Predicted Data', s=100, marker='*')
+        self.ax.scatter(x_test_pos[:,0]+3, x_test_pos[:,1]+6, label='Positive Predicted Data', s=100, marker='*')
         #plot negative predicted data
-        self.ax.scatter(x_test_neg[:,0]+1, x_test_neg[:,1]-4, label='Negative Predicted Data', s=100, marker='*')
+        self.ax.scatter(x_test_neg[:,0]+1, x_test_neg[:,1]-6, label='Negative Predicted Data', s=100, marker='*')
 
+        ## w.x + b = 0
+        ## w1x1 + w2x2 + b = 0
+        ## x2 = (-w1x1 - b) / w2
         def hyperplane(x,w,b,v):
             return ((-w[0]*x)-b+v) / w[1]
         
         x_train_max = np.max(x_train)
         x_train_min = np.min(x_train)
-        datarange = (x_train_min*0.3, x_train_max*0.5)
+        datarange = (x_train_min*0.35, x_train_max*0.42)  # Picking datapoints for the graph
         hyp_x_min = datarange[0]
         hyp_x_max = datarange[1]
 
         # positive support vector margin
-        psv1 = hyperplane(hyp_x_min, self.w, self.b, 1)
+        psv1 = hyperplane(hyp_x_min, self.w, self.b, 1) ## for positive support vector v = 1
         psv2 = hyperplane(hyp_x_max, self.w, self.b, 1)
-        self.ax.plot([hyp_x_min,hyp_x_max], [psv1,psv2], 'b')
+        self.ax.plot([hyp_x_min,hyp_x_max], [psv1,psv2], 'b--')
 
         # negative support vector margin
-        nsv1 = hyperplane(hyp_x_min, self.w, self.b, -1)
+        nsv1 = hyperplane(hyp_x_min, self.w, self.b, -1) ## for negative support vector v = -1
         nsv2 = hyperplane(hyp_x_max, self.w, self.b, -1)
-        self.ax.plot([hyp_x_min,hyp_x_max], [nsv1,nsv2], 'b')
+        self.ax.plot([hyp_x_min,hyp_x_max], [nsv1,nsv2], 'b--')
 
         # decision boundary
-        db1 = hyperplane(hyp_x_min, self.w, self.b, 0)
+        db1 = hyperplane(hyp_x_min, self.w, self.b, 0)  ## for decision boundary v = 0
         db2 = hyperplane(hyp_x_max, self.w, self.b, 0)
-        self.ax.plot([hyp_x_min,hyp_x_max], [db1,db2], 'k--')
+        self.ax.plot([hyp_x_min,hyp_x_max], [db1,db2], 'k')
 
         plt.title("SVM with SGD")
         plt.legend(loc='upper right')
@@ -114,7 +114,7 @@ if __name__ == "__main__":
     svm.fit(X_train, y_train)
 
     y_pred = svm.predict(X_test)
-    print("Accuracy:", svm.accuracy(X_test, y_test))
+    print("Accuracy:", np.mean(y_pred == y_test))
     
     svm.visulalization(X_train, y_train, X_test, y_pred) 
 
