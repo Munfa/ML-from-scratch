@@ -38,9 +38,21 @@
   </tr>
 </table>
 
+<h3>References</h3>
+<ul>
+  <li><b>Youtube Channels</b>
+    <ul>
+      <li>sentdex - Machine Learning with Python (Playlist)</li>
+      <li>AssemblyAI - Machine Learning From Scratch (Playlist)</li>
+      <li>NeuralNine</li>
+    </ul>
+  </li>
+  <li><b>ChatGPT</b> - Used for conceptual understanding and code improvements</li>
+  <li><b>Kaggle Notebooks</b></li>
+</ul>
 
-
-
+<h3>Contributing</h3>
+Contributions are welcome. Feel free to submit issues or pull requests.
 
 
 
