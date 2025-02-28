@@ -29,16 +29,15 @@
     <td>K-Nearest Neighbors</td>
     <td>
       Euclidean distance of data points is calculated to find the nearest data points. An unknown data point is assigned to the class that has the most points closer to it. <br>
-      <b>Euclidean Distance</b> = √(x2 - x1)² + (y2 - y1)²<br>
+      Euclidean Distance = √(x2 - x1)² + (y2 - y1)²<br>
     </td>
   </tr>
   <tr>
     <td>Linear Regression</td>
     <td>
-      Gradients of the slope <i>m</i> and intercept <i>b</i> are calculated from the <b>Mean Squared Error</b> equation. This gradient is used for updating <i>m</i> and <i>b</i> 
-      for better predictions. <br>
+      Gradients of the slope m and intercept b are calculated from the Mean Squared Error equation. This gradient is used for updating m and b for better predictions. <br>
       Linear equation = mx + b where m is the slope and b is the intercept of a line<br>
-      <b>Error</b> = 1/n * ∑(y - (mx + b))²<br>
+      Error = 1/n * ∑(y - (mx + b))²<br>
       m_gradient = -2/n * ∑x(y - (mx+b))<br>
       b_gradient = -2/n * ∑(y - (mx+b))<br>
     </td>
@@ -46,9 +45,8 @@
   <tr>
     <td>Logistic Regression</td>
     <td>
-      <b>Sigmoid Function</b> is used for making predictions. Gradients of the <i>weights</i> and <i>bias</i> are calculated from the <b>Loss Function</b> equation. This gradient is used for updating <i>weights</i> and <i>bias</i> 
-      for better predictions. <br>
-      Sigmoid Function = 1/(1+e<sup>-z</sup>); where z = w.X + b
+      The Sigmoid Function is used for making predictions. Gradients of the weights and bias are calculated from the Loss Function equation. This gradient is used for updating weights and bias for better predictions. <br>
+      Sigmoid Function = 1/(1+e<sup>-z</sup>); where z = w.X + b <br>
       Loss Function = (1/n) * ∑(-y*log(y_pred) - (1-y)*log(y_pred))<br>
       Partial derivatives of the Loss Function<br>
       dw = 1/n * ∑x(y_pred - y)<br>
@@ -58,9 +56,8 @@
   <tr>
     <td>Multiclass Logistic Regression</td>
     <td>
-      Using <b>Softmax Function</b> for making predictions of probabilities and choosing the class that has the highest probability for the classification. Gradients of the <i>weights</i> and <i>bias</i> are calculated from the <b>Cross-Entropy Loss Function</b>. This gradient is used for updating <i>weights</i> and <i>bias</i> 
-      for better predictions. <br>
-      Softmax Function = e<sup>z</sup>/∑(e<sup>z</sup>); where z = w.X + b
+      Using the Softmax Function for making predictions of probabilities and choosing the class that has the highest probability for the classification. Gradients of the weights and bias are calculated from the Cross-Entropy Loss Function. This gradient is used for updating weights and bias for better predictions. <br>
+      Softmax Function = e<sup>z</sup>/∑(e<sup>z</sup>); where z = w.X + b <br>
       Loss Function = - (1/n) * ∑(y * log(y_pred))<br>
       Partial derivatives of the Loss Function<br>
       dw = 1/n * ∑ x<sup>T</sup>(y_pred - y)<br>
@@ -70,23 +67,25 @@
   <tr>
     <td>Support Vector Machine (Stochastic Gradient Descent)</td>
     <td>
-      The linear equation <i>w.X+b</i> is used for making predictions for the classification. The gradient of the <b>Hinge-Loss Function</b> is used for updating the weights and bias.<br>
-      <b>Hinge-Loss Function</b> = 1/2 * ||w||^2 + C * ∑max(0, 1 - y * (wx + b))<br>
+      The linear equation w.X+b is used for making predictions for the classification. The gradients of the Hinge-Loss Function are used for updating the weights and bias.<br>
+      Hinge-Loss Function = 1/2 * ||w||^2 + C * ∑max(0, 1 - y * (wx + b))<br>
       Partial derivatives of the Hinge-Loss Function<br>
-      if (y * (wx + b) < 1):<br>
+      if (y * (wx + b) < 1): <br>
+      (misclassified) <br>
       dw = C*w - y*x; where C = regularizing parameter<br>
       db = y<br>
-      else if (y * (wx + b) >= 1):
+      else if (y * (wx + b) >= 1): <br>
+      (correctly classified) <br>
       dw = w
     </td>
   </tr>
   <tr>
     <td>Support Vector Machine (Sequential Minimal Optimization)</td>
     <td>
-      The same linear equation <i>w.X+b</i> is used for making predictions of this algorithm. The optimum value of the Lagrange multiplier( is achieved by solving the Dual Optimization Problem or the Quadratic Programming Problem. This Lagrange multiplier is used for calculating the weight and bias.<br>
+      The same linear equation w.X+b is used for making predictions of this algorithm. The optimum value of the Lagrange multiplier(α) is achieved by solving the Dual Optimization Problem or the Quadratic Programming Problem. This Lagrange multiplier is used to calculate the weight and bias.<br>
       Dual Optimization Problem = ∑αi - 1/2 ∑αiαj*yiyj*(xi.xj)<br>
       where,<br>
-      0<=αi<=C; C = regularizing parameter<br>
+      0<=αi<=C; C = regularizing parameter <br>
       ∑yiαi = 0
     </td>
   </tr>
