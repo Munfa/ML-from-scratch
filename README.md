@@ -89,6 +89,13 @@
       ∑yiαi = 0
     </td>
   </tr>
+  <tr>
+    <td>Decision Tree</td>
+    <td>
+      This algorithm is implemented using Gini Impurity to find the best feature and best threshold to build the tree. For predictions, the tree is traversed until a leaf node is reached for each sample.<br>
+      Gini Impurity = 1 - ∑(p<sub>i</sub>)<sup>2</sup>; where i is the class and p is the probability of each class
+    </td>
+  </tr>
 </table>
 
 <h3>References</h3>
@@ -98,6 +105,7 @@
       <li>sentdex - Machine Learning with Python (Playlist)</li>
       <li>AssemblyAI - Machine Learning From Scratch (Playlist)</li>
       <li>NeuralNine</li>
+      <li>StatQuest with Josh Starmer</li>
     </ul>
   </li>
   <li><b>ChatGPT</b> - Used for conceptual understanding and code improvements</li>
