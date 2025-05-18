@@ -92,8 +92,15 @@
   <tr>
     <td>Decision Tree</td>
     <td>
-      This algorithm is implemented using Gini Impurity to find the best feature and best threshold to build the tree. For predictions, the tree is traversed until a leaf node is reached for each sample.<br>
+      This algorithm is implemented using Gini Impurity to find the best feature and best threshold to build the trees. For predictions, the tree is traversed until a leaf node is reached for each sample.<br>
       Gini Impurity = 1 - ∑(p<sub>i</sub>)<sup>2</sup>; where i is the class and p is the probability of each class
+    </td>
+  </tr>
+  <tr>
+    <td>Random Forest</td>
+    <td>
+      This algorithm is implemented using Entropy and Information Gain to find the best feature and best threshold to build the tree. A higher value of information gain is needed for lower node impurity. For predictions, the trees from the forest are traversed to classify a sample.<br>
+      Gini Impurity = - ∑p<sub>i</sub>*log<sub>2</sub>(p<sub>i</sub>); where i is the class and p is the probability of each class
     </td>
   </tr>
 </table>
