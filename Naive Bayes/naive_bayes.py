@@ -2,6 +2,7 @@ import numpy as np
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+from scipy.stats import norm
 
 # Declaring empty dictionaries to store mean. variance and prior probabilities of the classes
 means = {}
@@ -59,8 +60,21 @@ print('Accuracy= ',accuracy)
 
 fig = plt.figure()
 ax = fig.add_subplot()
-ax.scatter(range(len(y_test)), y_test, marker='o', label='actual')
-ax.scatter(range(len(pred)), pred, marker='x', label='predicted')
+# ax.scatter(range(len(y_test)), y_test, marker='o', label='actual')
+# ax.scatter(range(len(pred)), pred, marker='x', label='predicted')
+# plt.title('Naive Bayes')
+
+####### plot distribution ######
+for cls in means:
+    stds = {}
+    stds[cls] = np.sqrt(vars[cls])  # calculating standard deviation for plot
+    mean = means[cls][0]
+    std = stds[cls][0]
+    x = np.linspace(mean - 4*std, mean + 4*std, 200)    # using linspace for a smooth curve; it generates a sequence of numbers
+    y = norm(loc=mean, scale=std).pdf(x)    # pdf = Probability Density Function
+    ax.plot(x, y, label=f'Class {cls}')
+plt.title('Gaussian Distributions')
+plt.xlabel('Feature Values')
+plt.ylabel('Probability Density')
 plt.legend(loc='upper right')
-plt.title('Naive Bayes')
 plt.show()
