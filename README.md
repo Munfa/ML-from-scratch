@@ -103,6 +103,19 @@
       Gini Impurity = - ∑p<sub>i</sub>*log<sub>2</sub>(p<sub>i</sub>); where i is the class and p is the probability of each class
     </td>
   </tr>
+  <tr>
+    <td>Gaussian Naive Bayes</td>
+    <td>
+      This algorithm used the Gaussian formula to predict the likelihood of each feature belonging to a class. <br>
+      The formula = 1/(√2*π*σ<sup>2</sup>) * e<sup>-(x<sub>i</sub> - μ)<sup>2</sup> / (2*π<sup>2</sup>)</sup>
+      <br>Here, 
+      <br>x<sub>i</sub> = feature value 
+      <br>σ<sup>2</sup> = variance
+      <br>μ = mean
+      <br>The prediction of the class is determined by the maximum probability<br>
+      P(c|x<sub>i</sub>) = log(P(c) * ∑P(x<sub>i</sub>|c))
+    </td>
+  </tr>
 </table>
 
 <h3>References</h3>
